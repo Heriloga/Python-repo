@@ -1,0 +1,82 @@
+#Favourites
+#MOVIES,GAMES,BOOKS
+#Login system
+
+categoriest = ["Movies","Games","Books"]
+category = [["In to the Wild","In to the Wild","In to the Wild","In to the Wild"],["GTA5","GTA5","GTA5","GTA5","GTA5"],["Shining","Shining","Shining","Shining","Shining"]]
+inputs = [["Movies","movies","Movie","movie"],["Games","games","Game","game"],["Books","books","Book","book"],["Login","login"],["Regist","regist"]]
+
+user1 = ""
+passw1 = ""
+num,num2,num3 = 0,0,0
+exiting = False
+
+print("FAVOURITES")
+lr = input("Login/Regist\n")
+if lr in inputs[3]:
+   print("Login")
+   user1 = input("Username:")
+   passw1 = input("Password:")
+
+if lr in inputs[4]:
+   print("=Regist=")
+   user0 = input("Username:")
+   passw0 = input("Password:")
+   passw2 = input("Verify Password:")
+   if passw0 != passw2:
+      while passw0 != passw2:
+         print("Wrong verifying!")
+         passw0 = input("New Password:")
+         passw2 = input("Verify Password:")
+
+   file = open("regist.txt","w")
+   file.write("Username:")
+   file.write(user0)
+   file.write("\n")
+   file.write("Password:")
+   file.write(passw0)
+   file.close() 
+
+print("=Login=")
+while user0 != user1:
+   user1 = input("Username:")
+while  passw0 != passw1:
+   passw1 = input("Password:")
+
+while exiting == False:
+   inp = input("Would you like to add something? (y/n)")
+   if inp == "y":
+      cat = input("{0} category are available: {1},{2},{3}. ".format(len(category),categoriest[0],categoriest[1],categoriest[2]))
+      if cat in inputs[0]:
+         print("=Movies category=")
+         movie = input("Title:")
+         category[0].append(movie)
+         
+      elif cat in inputs[1]:
+         print("=Games category=")
+         game = input("Title:")
+         category[1].append(game)   
+
+      elif cat in inputs[2]:
+         print("=Books category=")
+         book = input("Title:")
+         category[2].append(book)
+
+   if inp == "n":
+      inp2 = input("Would you like to see your Favourites? (y/n)")
+      num,num2,num3 = 0,0,0
+      if inp2 == "y":
+         print("\nMovies:")
+         for x in category[0]:
+            num+=1
+            print("{0}. {1}".format(num,x))
+
+         print("\nGames:")
+         for x in category[1]:
+            num2+=1
+            print("{0}. {1}".format(num2,x))
+      
+         print("\nBooks:")
+         for x in category[2]:
+            num3+=1
+            print("{0}. {1}".format(num3,x))
